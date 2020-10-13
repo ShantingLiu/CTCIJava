@@ -14,6 +14,9 @@ public class Blind75 {
         int[] priceTest = new int[]{7, 1, 5, 3, 6, 4};
         System.out.println(maxProfit(priceTest));
         */
+
+        int[] test = new int[]{1, 2, 3, 1};
+        System.out.println(containsDuplicate(test));
     }
 
     private static int[] twoSum(int[] nums, int target){
@@ -43,6 +46,17 @@ public class Blind75 {
             }
         }
         return maxProfit;
+    }
+
+    private static boolean containsDuplicate(int[] arr){
+        Set<Integer> set = new HashSet<>(arr.length);
+        for (int value : arr){
+            if (set.contains(value)){
+                return true;
+            }
+            set.add(value);
+        }
+        return false;
     }
 
 }
