@@ -20,18 +20,39 @@ public class Blind75 {
         System.out.println(containsDuplicate(test));
         */
 
-        /*
+        /* Test productExceptSelf()
         int[] test = new int[]{1, 2, 3, 4};
         System.out.println(Arrays.toString(productExceptSelf(test)));
         */
 
-        /*
+        /* Test maxSubArray()
         int[] test = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println(maxSubArray(test));
         */
 
+        /* Test maxProduct()
         int[] test = new int[]{2, 3, -2, 4};
         System.out.println(maxProduct(test));
+        */
+    
+        int[] test = new int[]{3, 4, 5, 1, 2};
+        System.out.println(findMin(test));
+    
+    }
+
+    private static int findMin(int[] nums){
+        int L = 0;
+        int R = nums.length - 1;
+
+        while (nums[L] > nums[R]){
+            int M = (L + R) / 2;
+            if (nums[L] <= nums[M]){
+                L = M + 1;
+            } else {
+                R = M;
+            }
+        }
+        return nums[L];
     }
 
     private static int maxProduct(int[] nums){
