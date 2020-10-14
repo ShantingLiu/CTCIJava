@@ -35,9 +35,40 @@ public class Blind75 {
         System.out.println(maxProduct(test));
         */
     
+        /* Test findMin()
         int[] test = new int[]{3, 4, 5, 1, 2};
         System.out.println(findMin(test));
-    
+        */
+
+        int[] test = new int[]{4, 5, 6, 7, 0, 1, 2};
+        int target = 0;
+        System.out.println(searchRotatedSorted(test, target));
+
+    }
+
+    private static int searchRotatedSorted(int[] nums, int target){
+        int L = 0;
+        int R = nums.length - 1;
+
+        while(L <= R){
+            int M = L + (R - L) / 2;
+            if (nums[M] == target){
+                return M;
+            } else if (nums[L] <= nums[M]){
+                if (target >= nums[L] && target < nums[M]){
+                    R = M - 1;
+                } else {
+                    L = M + 1;
+                }
+            } else {
+                if (target <= nums[R] && target > nums[M]){
+                    L = M + 1;
+                } else {
+                    R = M - 1;
+                }
+            }
+        }
+        return -1;
     }
 
     private static int findMin(int[] nums){
