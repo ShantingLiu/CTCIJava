@@ -20,9 +20,26 @@ public class Blind75 {
         System.out.println(containsDuplicate(test));
         */
 
+        /*
         int[] test = new int[]{1, 2, 3, 4};
         System.out.println(Arrays.toString(productExceptSelf(test)));
-        
+        */
+
+        int[] test = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        System.out.println(maxSubArray(test));
+    }
+
+
+    private static int maxSubArray(int[] nums){
+        int localSum = nums[0];
+        int globalSum = nums[0];
+
+        for (int i = 0; i < nums.length; i++){
+            localSum = Math.max(nums[i], localSum + nums[i]);
+            globalSum = Math.max(globalSum, localSum);
+        }
+
+        return globalSum;
     }
 
     private static int[] twoSum(int[] nums, int target){
