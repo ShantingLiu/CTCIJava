@@ -15,8 +15,14 @@ public class Blind75 {
         System.out.println(maxProfit(priceTest));
         */
 
+        /* Test containsDuplicate()
         int[] test = new int[]{1, 2, 3, 1};
         System.out.println(containsDuplicate(test));
+        */
+
+        int[] test = new int[]{1, 2, 3, 4};
+        System.out.println(Arrays.toString(productExceptSelf(test)));
+        
     }
 
     private static int[] twoSum(int[] nums, int target){
@@ -59,4 +65,27 @@ public class Blind75 {
         return false;
     }
 
+    private static int[] productExceptSelf(int[] nums) {
+        int length = nums.length;
+        int[] L = new int[length];
+        int[] R = new int[length];
+        int[] result = new int[length];
+
+        L[0] = 1;
+        R[length - 1] = 1;
+
+        for (int i = 1; i < length; i++){
+            L[i] = nums[i - 1] * L[i - 1];
+        }
+
+        for (int i = length - 2; i >= 0; i--){
+            R[i] = nums[i + 1] * R[i + 1];
+        }
+
+        for (int i = 0; i < length; i++){
+            result[i] = L[i] * R[i];
+        }
+
+        return result;
+    }
 }
