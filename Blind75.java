@@ -25,10 +25,28 @@ public class Blind75 {
         System.out.println(Arrays.toString(productExceptSelf(test)));
         */
 
+        /*
         int[] test = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};
         System.out.println(maxSubArray(test));
+        */
+
+        int[] test = new int[]{2, 3, -2, 4};
+        System.out.println(maxProduct(test));
     }
 
+    private static int maxProduct(int[] nums){
+        int max_so_far = nums[0];
+        int min_so_far = nums[0];
+        int result = max_so_far;
+
+        for (int i = 1; i < nums.length; i++){
+            int temp_max = Math.max(nums[i], Math.max(max_so_far * nums[i], min_so_far * nums[i]));
+            min_so_far = Math.min(nums[i], Math.min(max_so_far * nums[i], min_so_far * nums[i]));
+            max_so_far = temp_max;
+            result = Math.max(result, max_so_far);
+        }
+        return result;
+    }
 
     private static int maxSubArray(int[] nums){
         int localSum = nums[0];
