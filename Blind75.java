@@ -45,11 +45,47 @@ public class Blind75 {
         int target = 0;
         System.out.println(searchRotatedSorted(test, target));
         */
-
-         
     }
 
+    /* Commenting this out because Node is not defined
+    private static Node reverseSingleLL(Node node){
+        Node prev = null;
+        Node curr = node;
+        Node next = null;
+        while (curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        node = prev;
+        return node;
+    }
+    */
+
+    /*Commenting this out because numOfVertices and adj[v] is not defined
+    private static void printGraphDFS(int v){
+        boolean[] visited = new boolean[numOfVertices];
+        printGraphDFSHelper(v, visited);
+    }
+    */
+
     /*
+    private static void printGraphDFSHelper(int v, boolean[] visited){
+        visited[v] = true;
+        System.out.print(v + " ");
+
+        Iterator<Integer> i = adj[v].listIterator();
+        while (i.hasNext()){
+            int n = i.next();
+            if (!visited[n]){
+                printGraphDFSHelper(n, visited);
+            }
+        }
+    }
+    */
+
+    /* Commenting this out because I didn't define the Node object 
     private static void printTreeBFS(Node root){
         Queue<Node> queue = new LinkedList<Node>();
         queue.add(root);
@@ -65,7 +101,7 @@ public class Blind75 {
         }
     }
     */
-    
+
     private static int searchRotatedSorted(int[] nums, int target){
         int L = 0;
         int R = nums.length - 1;
