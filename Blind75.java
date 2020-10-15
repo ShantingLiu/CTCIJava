@@ -47,8 +47,26 @@ public class Blind75 {
         */
     }
 
+ 
+    private static void reverseDoublyLL(Node node){
+        if (node == null) return node;
+
+        Node curr = node;
+        Node prev = null;
+
+        while (curr != null){
+            prev = curr.prev;
+            curr.prev = curr.next;
+            curr.next = prev;
+            curr = curr.prev;
+        }
+    }
+    
+
     /* Commenting this out because Node is not defined
     private static Node reverseSingleLL(Node node){
+        if (node == null) return node;
+
         Node prev = null;
         Node curr = node;
         Node next = null;
@@ -63,14 +81,14 @@ public class Blind75 {
     }
     */
 
-    /*Commenting this out because numOfVertices and adj[v] is not defined
+    /* Commenting this out because numOfVertices and adj[v] is not defined
     private static void printGraphDFS(int v){
         boolean[] visited = new boolean[numOfVertices];
         printGraphDFSHelper(v, visited);
     }
     */
 
-    /*
+    /* printGraphDFSHelper() has values not defined
     private static void printGraphDFSHelper(int v, boolean[] visited){
         visited[v] = true;
         System.out.print(v + " ");
