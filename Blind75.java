@@ -45,9 +45,32 @@ public class Blind75 {
         int target = 0;
         System.out.println(searchRotatedSorted(test, target));
         */
+        
+        int[] testBinarySearch = new int[]{2, 3, 4, 10, 40};
+        int target = 10;
+        System.out.println(binarySearch(testBinarySearch, target));
     }
 
- 
+    private static int binarySearch(int[] nums, int target){
+        return binarySearchHelper(nums, target, 0, nums.length - 1);
+    }
+
+    private static int binarySearchHelper(int[] nums, int target, int L, int R){
+        while (L <= R){
+            int M = (R + L) / 2;
+            if (target == nums[M]) return M;
+            else if (target > nums[M]){
+                L = M + 1;
+                return binarySearchHelper(nums, target, L, R);
+            } else {
+                R = M;
+                return binarySearchHelper(nums, target, L, R);
+            }
+        }
+        return -1;
+    }
+
+    /* Commenting this out because Node is not defined
     private static void reverseDoublyLL(Node node){
         if (node == null) return node;
 
@@ -61,7 +84,7 @@ public class Blind75 {
             curr = curr.prev;
         }
     }
-    
+    */
 
     /* Commenting this out because Node is not defined
     private static Node reverseSingleLL(Node node){
