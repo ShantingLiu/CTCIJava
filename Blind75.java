@@ -52,8 +52,10 @@ public class Blind75 {
         System.out.println(binarySearch(testBinarySearch, target));
         */
         
+        /* Test threeSum
         int[] test3Sum = new int[]{-1, 0, 1, 2, -1, -4};
         System.out.println(threeSum(test3Sum));
+        */
     }
 
     private static List<List<Integer>> threeSum(int[] nums){
@@ -104,8 +106,8 @@ public class Blind75 {
         return -1;
     }
     
-    /* Commenting this out because Node is not defined
-    private static void reverseDoublyLL(Node node){
+    /* Commenting this out because Node is not defined (this method returns the new head node of reversed list)
+    private static Mode reverseDoublyLL(Node node){
         if (node == null) return node;
 
         Node curr = node;
@@ -117,6 +119,12 @@ public class Blind75 {
             curr.next = prev;
             curr = curr.prev;
         }
+
+        if (prev != null){  // before changing head, check for the case like empty list and list with only one node
+            node = prev.prev;
+        }
+
+        return node;
     }
     */
 
