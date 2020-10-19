@@ -46,9 +46,43 @@ public class Blind75 {
         System.out.println(searchRotatedSorted(test, target));
         */
         
+        /* Test binarySearch()
         int[] testBinarySearch = new int[]{2, 3, 4, 10, 40};
         int target = 10;
         System.out.println(binarySearch(testBinarySearch, target));
+        */
+        
+        int[] test3Sum = new int[]{-1, 0, 1, 2, -1, -4};
+        System.out.println(threeSum(test3Sum));
+    }
+
+    private static List<List<Integer>> threeSum(int[] nums){
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<>();
+        for (int i = 0; i < nums.length && nums[i] <= 0; i++){
+            if (i == 0 || nums[i] != nums[i - 1]){
+                threeSumHelper(i, nums, res);
+            }
+        }
+        return res;
+    }
+
+    private static void threeSumHelper(int i, int[] nums, List<List<Integer>> res){
+        int lo = i + 1;
+        int hi = nums.length - 1;
+        while (lo < hi){
+            int sum = nums[i] + nums[lo] + nums[hi];
+            if (sum < 0){
+                lo++;
+            } else if (sum > 0){
+                hi--;
+            } else { // sum = 0
+                res.add(Arrays.asList(nums[i], nums[lo++], nums[hi--]));
+                while (lo < hi && nums[lo] == nums[lo - 1]){
+                    lo++;
+                }
+            }
+        }
     }
 
     private static int binarySearch(int[] nums, int target){
@@ -69,7 +103,7 @@ public class Blind75 {
         }
         return -1;
     }
-
+    
     /* Commenting this out because Node is not defined
     private static void reverseDoublyLL(Node node){
         if (node == null) return node;
