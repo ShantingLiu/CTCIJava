@@ -56,6 +56,24 @@ public class Blind75 {
         int[] test3Sum = new int[]{-1, 0, 1, 2, -1, -4};
         System.out.println(threeSum(test3Sum));
         */
+
+        int[] testContainerWithMostWater = new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7};
+        System.out.println(containerWithMostWater(testContainerWithMostWater));
+    }
+
+    private static int containerWithMostWater(int[] height){
+        int max = 0;
+        int l = 0;
+        int r = height.length - 1;
+        while (l < r){
+            max = Math.max(max, Math.min(height[l], height[r])*(r-l));
+            if (height[l] < height[r]){
+                l++;
+            } else {
+                r--;
+            }
+        }
+        return max;
     }
 
     private static List<List<Integer>> threeSum(int[] nums){
