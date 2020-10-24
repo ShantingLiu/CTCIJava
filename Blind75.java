@@ -52,13 +52,58 @@ public class Blind75 {
         System.out.println(binarySearch(testBinarySearch, target));
         */
         
-        /* Test threeSum
+        /* Test threeSum()
         int[] test3Sum = new int[]{-1, 0, 1, 2, -1, -4};
         System.out.println(threeSum(test3Sum));
         */
 
+        /* Test containerWithMostWater()
         int[] testContainerWithMostWater = new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7};
         System.out.println(containerWithMostWater(testContainerWithMostWater));
+        */
+
+        // GRAPHS ------------------------------------------------------------
+
+        /* Test courseSchedule() */
+        int[][] testCourseSchedule = new int[][]{{1,0},{0,2}};
+        int numCourses = 3;
+        System.out.println(courseSchedule(numCourses, testCourseSchedule));
+    }
+
+    private static boolean courseSchedule(int numCourses, int[][] prerequisites){
+        int[] inDegree = new int[numCourses];
+        Map<Integer,List<Integer>> adj = new HashMap<>();
+        
+        // populate adjacency list with values being dependencies
+        for (int[] pr : prerequisites){
+            // see if pr's prereq [index 1] has any prereqs of its own 
+            // by checking map to see if pr[1] is a key
+            List<Integer> prOfPr = adj.getOrDefault(pr[1], new ArrayList<>());
+            prOfPr.add(pr[0]); // WHY? pr[0] isn't a prereq of it's prereq, pr[1]...
+            inDegree[pr[0]]++;
+            adj.put(pr[1], prOfPr);
+        }
+        
+        // similar to Kahn's algorithm
+        Queue<Integer> q = new LinkedList<>();
+        int count = 0;
+        for (int i = 0; i < inDegree.length; i++){
+            if (inDegree[i] == 0)
+                q.add(i);
+        }
+        
+        while (!q.isEmpty()){
+            int curr = q.poll();
+            if (inDegree[curr] == 0)
+                    count++;
+            if (!adj.containsKey(curr)) continue; // continue will skip this iteration of while
+            for (int pr : adj.get(curr)){
+                inDegree[pr]--;
+                if (inDegree[pr] == 0) 
+                    q.add(pr);
+            }
+        }
+        return count == numCourses; 
     }
 
     private static int containerWithMostWater(int[] height){
